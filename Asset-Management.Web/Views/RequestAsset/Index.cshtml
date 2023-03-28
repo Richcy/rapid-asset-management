@@ -1,0 +1,79 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<Asset_Management.ViewModel.RequestAssetModel>
+@{
+    ViewBag.Title = "Request Asset";
+    ViewBag.namePage = "Daftar Request Asset";
+    ViewBag.Level1 = "RequestAsset";
+    ViewBag.Level2 = "RequestAsset";
+    // Approval team
+    Layout = "approvalLayout";
+}
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>PIC Name</th>
+                                    <th>PIC Address</th>
+                                    <th>Specification</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Id</td>
+                                        <td>@item.PicName</td>
+                                        <td>@item.PicAddress</td>
+                                        <td>@item.Specification</td>
+                                        <td>@item.RequestDate</td>
+                                        <td align="center">
+                                            <div class="btn-group">
+                                                <a asp-action="Approve" asp-route-id="@item.Id" class="btn btn-success btn-xs tooltips" data-popup="tooltip" data-original-title="Hapus Data" data-placement="top"><i class="fa fa-check-circle"></i></a>
+
+                                                <a asp-action="Reject" asp-route-id="@item.Id" class="btn btn-danger btn-xs tooltips" data-popup="tooltip" data-original-title="Print Data" data-placement="top"><i class="fa fa-times-circle"></i></a>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            $("#approved").click(function () {
+                alert("Request has been approved")
+                //$("#approved-modal").modal("show");
+            });
+        });
+    </script>
+}

@@ -1,0 +1,69 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model Asset_Management.ViewModel.AuditValidationReq
+
+@{
+    ViewBag.Title = "Audit";
+    ViewBag.namePage = "Validation Audit";
+    ViewBag.Level1 = "Audit";
+    ViewBag.Level2 = "UnvalidateAudit";
+    // Admin Unvalidate Audit
+    Layout = "adminLayout";
+}
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-9">
+            <!-- general form elements disabled -->
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Form Audit Validation</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <form asp-controller="Audit" asp-action="UpdateAudit" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="AssetHistoryId" />
+                        <input type="hidden" asp-for="Condition" />
+                        <input type="hidden" asp-for="TypeWindows" />
+                        <input type="hidden" asp-for="WindowsLicenseUrl" />
+                        <input type="hidden" asp-for="TypeOffice" />
+                        <input type="hidden" asp-for="OfficeLicenseUrl" />
+                        <input type="hidden" asp-for="Antivirus" />
+                        <input type="hidden" asp-for="AssetPhotoUrl" />
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label asp-for="Result">Result</label>
+                                    <input asp-for="Result" class="form-control" />
+                                    <span asp-validation-for="Result" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- input states -->
+
+                        <div class="row">
+                            <div class="col-12">
+                                <a asp-action="Index" class="btn btn-secondary">Back</a>
+                                <input type="submit" value="Save Changes" class="btn btn-success float-right">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+</section>
+<!-- /.content -->
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

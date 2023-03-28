@@ -1,0 +1,92 @@
+﻿@model Asset_Management.ViewModel.AssetModel
+
+@{
+    ViewBag.Title = "Edit Asset";
+    ViewBag.namePage = "Edit Asset";
+    ViewBag.Level1 = "Asset";
+    ViewBag.Level2 = "AssetList";
+
+    Layout = "adminLayout";
+}
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- general form elements disabled -->
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Form Edit Asset</h3>
+                </div>
+                <!-- /.card-header -->
+                <form asp-controller="Asset" asp-action="Update" method="post">
+                    <div class="card-body">
+                        <input type="hidden" asp-for="Id" />
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <!-- text input -->
+                                    <div class="form-group">
+                                        <label asp-for="AssetName">Asset Name</label>
+                                        <input asp-for="AssetName" type="text" class="form-control" placeholder="Enter Asset Name...">
+                                        <span asp-validation-for="AssetName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label asp-for="SerialNumber">Serial Number</label>
+                                        <input asp-for="SerialNumber" type="text" class="form-control" placeholder="Enter Serial Number...">
+                                        <span asp-validation-for="SerialNumber" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <!-- textarea -->
+                                    <div class="form-group">
+                                        <label asp-for="PurchaseYear">Purchase Year</label>
+                                        <input asp-for="PurchaseYear" type="text" class="form-control" placeholder="Enter Purchase Year...">
+                                        <span asp-validation-for="PurchaseYear" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="form-check">
+                                            <input asp-for="Used" type="checkbox" value="true" class="form-check-input">
+                                            <label asp-for="Used" class="form-check-label">Used</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label asp-for="Specification">Specification</label>
+                                        <textarea asp-for="Specification" type="text" class="form-control" placeholder="Enter Specification..."></textarea>
+                                        <span asp-validation-for="Specification" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- input states -->
+
+
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <a asp-action="Index" class="btn btn-secondary">Back</a>
+                                    <input type="submit" value="Save Changes" class="btn btn-success float-right">
+                                </div>
+                            </div>
+
+                    </div>
+                    <!-- /.card-body -->
+                </form>
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+</section>
+<!-- /.content -->
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

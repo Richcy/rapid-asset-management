@@ -1,0 +1,86 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Asset_Management.ViewModel.AssetHistoryReq
+
+@{
+    ViewBag.Title = "Asset History";
+    // Admin History
+    ViewBag.namePage = "Create Return Date";
+    ViewBag.Level1 = "Asset";
+    ViewBag.Level2 = "AssetHistory";
+
+    // Admin chose asset
+    Layout = "adminLayout";
+}
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-5">
+            <!-- general form elements disabled -->
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Form Edit Asset</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <form asp-controller="AssetHistory" asp-action="Update" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="AssetId" />
+                        <input type="hidden" asp-for="Location" />
+                        <input type="hidden" asp-for="PicId" />
+                        <input type="hidden" asp-for="SendDate" />
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label asp-for="ReturnDate">Return Date</label>
+                                    <input asp-for="ReturnDate" type="date" class="form-control" placeholder="Return Date Asset">
+                                    <span asp-validation-for="ReturnDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-12">
+                                <a asp-action="Index" class="btn btn-secondary">Back</a>
+                                <input type="submit" value="Create" class="btn btn-success float-right">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+</section>
+<!-- /.content -->
+
+@*
+
+<h2>Create New Asset History</h2>
+
+<form asp-controller="AssetHistory" asp-action="Update" method="post">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="AssetId" />
+    <input type="hidden" asp-for="Location" />
+    <input type="hidden" asp-for="PicId" />
+    <input type="hidden" asp-for="SendDate" />
+    <div class="form-group">
+        <label asp-for="ReturnDate">Return Date</label>
+        <input asp-for="ReturnDate" class="form-control"></input>
+        <span asp-validation-for="ReturnDate" class="text-danger"></span>
+    </div>
+    <div class="pt-2 pb-2">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>*@
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
